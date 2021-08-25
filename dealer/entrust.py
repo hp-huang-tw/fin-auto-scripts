@@ -16,3 +16,6 @@ class EnTrust:
             sleep(1)
 
             pyautogui.press('enter')
+            return True
+
+        return False

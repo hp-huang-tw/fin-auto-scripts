@@ -24,6 +24,10 @@ class SinoPac:
             pyautogui.typewrite(self.password)
             pyautogui.press('enter')
 
+            return True
+
+        return False
+
     def launch_eleader(self):
         if not check_is_running('Meow.exe'):
             app = 'C:\\eleader\\bin\\VUp2.exe'
@@ -33,3 +37,7 @@ class SinoPac:
             # input password
             pyautogui.typewrite(self.password)
             pyautogui.press('enter')
+
+            return True
+
+        return False
