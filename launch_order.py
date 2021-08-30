@@ -8,6 +8,7 @@ from dealer.entrust import EnTrust
 
 from notify.line_notify import LineNotify
 from sreenshot import take_screenshot
+from utils.keyborad_detector import get_capslock_state, disable_capslock
 
 
 def screenshot():
@@ -53,5 +54,10 @@ class OrderLauncher:
 
 
 if __name__ == '__main__':
+    CAPSLOCK = get_capslock_state()
+    if CAPSLOCK:
+        print("WARNING:  CAPS LOCK IS ENABLED!")
+        disable_capslock()
+
     launcher = OrderLauncher()
     launcher.launch()
