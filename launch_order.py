@@ -49,10 +49,8 @@ class SoftwareLauncher:
         screenshot()
 
     def launch_xq(self):
-        if self.sinopac.launch_xq():
-            self.line_notify_client.send_text("xq is launched.")
-            sleep(5)
-            screenshot()
+        # xq can detect pyautogui, so do nothing after launching it...
+        self.sinopac.launch_xq()
 
 
 if __name__ == '__main__':
