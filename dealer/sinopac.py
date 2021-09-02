@@ -41,3 +41,10 @@ class SinoPac:
             return True
 
         return False
+
+    def launch_xq(self):
+        if not check_is_running('daqSINOAP.exe'):
+            app = 'C:\\SINOAP\\daqSINOAP.exe'
+            os.system(app)
+            return True
+        return False

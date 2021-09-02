@@ -2,7 +2,7 @@ import time
 import schedule
 from schedule import every, repeat
 
-from launch_order import OrderLauncher
+from launch_order import SoftwareLauncher
 
 eight_clock = "08:00"
 
@@ -13,7 +13,7 @@ eight_clock = "08:00"
 @repeat(every().thursday.at(eight_clock))
 @repeat(every().friday.at(eight_clock))
 def launch_order():
-    OrderLauncher().launch()
+    SoftwareLauncher().launch_order_programs()
 
 
 if __name__ == '__main__':

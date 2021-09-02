@@ -24,33 +24,35 @@ def screenshot():
     line_notify_client.send_image('Order programs are launched at ' + now_string, filename)
 
 
-class OrderLauncher:
+class SoftwareLauncher:
 
     def __init__(self):
         load_dotenv()
+        self.line_notify_client = LineNotify(os.getenv('LINE_NOTIFY_TOKEN'))
+        self.sinopac = SinoPac(os.getenv('SINOPAC_PASSWORD'))
+        self.entrust = EnTrust()
 
-    def launch(self):
-        sinopac_password = os.getenv('SINOPAC_PASSWORD')
-        line_notify_token = os.getenv('LINE_NOTIFY_TOKEN')
-
-        line_notify_client = LineNotify(line_notify_token)
-
-        sinopac = SinoPac(sinopac_password)
-
-        if sinopac.launch_sfuture_trader():
-            line_notify_client.send_text("sfuture_trader is launched.")
+    def launch_order_programs(self):
+        if self.sinopac.launch_sfuture_trader():
+            self.line_notify_client.send_text("sfuture_trader is launched.")
 
         sleep(1)
-        if sinopac.launch_eleader():
-            line_notify_client.send_text("eleader is launched.")
+        if self.sinopac.launch_eleader():
+            self.line_notify_client.send_text("eleader is launched.")
 
         sleep(1)
-        entrust = EnTrust()
-        if entrust.launch_vip_trading_system():
-            line_notify_client.send_text("entrust vip is launched.")
+
+        if self.entrust.launch_vip_trading_system():
+            self.line_notify_client.send_text("entrust vip is launched.")
 
         sleep(5)
         screenshot()
+
+    def launch_xq(self):
+        if self.sinopac.launch_xq():
+            self.line_notify_client.send_text("xq is launched.")
+            sleep(5)
+            screenshot()
 
 
 if __name__ == '__main__':
@@ -59,5 +61,6 @@ if __name__ == '__main__':
         print("WARNING:  CAPS LOCK IS ENABLED!")
         disable_capslock()
 
-    launcher = OrderLauncher()
-    launcher.launch()
+    launcher = SoftwareLauncher()
+    launcher.launch_order_programs()
+    launcher.launch_xq()
