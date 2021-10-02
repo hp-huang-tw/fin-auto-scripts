@@ -36,14 +36,19 @@ class SoftwareLauncher:
         if self.sinopac.launch_sfuture_trader():
             self.line_notify_client.send_text("sfuture_trader is launched.")
 
-        sleep(1)
-        if self.sinopac.launch_eleader():
-            self.line_notify_client.send_text("eleader is launched.")
+        # replace eleader with vip
+        # sleep(1)
+        # if self.sinopac.launch_eleader():
+        #     self.line_notify_client.send_text("eleader is launched.")
 
         sleep(1)
 
         if self.entrust.launch_vip_trading_system():
             self.line_notify_client.send_text("entrust vip is launched.")
+
+        sleep(1)
+        if self.sinopac.launch_vip():
+            self.line_notify_client.send_text("vip is launched.")
 
         sleep(5)
         screenshot()

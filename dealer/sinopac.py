@@ -4,7 +4,7 @@ import pyautogui
 
 from utils.process import check_is_running
 
-desktop_path = 'C:\\Users\\User\\Desktop'
+desktop_path = os.path.expanduser("~/Desktop")
 
 
 class SinoPac:
@@ -41,6 +41,14 @@ class SinoPac:
             return True
 
         return False
+
+    def launch_vip(self):
+        if not check_is_running('ITS.exe'):
+            app = desktop_path + '\\永豐金證券VIP閃電.lnk'
+            os.system(app)
+            sleep(20)
+            pyautogui.press('tab')
+            pyautogui.press('enter')
 
     def launch_xq(self):
         if not check_is_running('daqSINOAP.exe'):
